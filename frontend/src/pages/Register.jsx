@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import axios from 'axios'
+import api from '../api/axios'
 
 export default function Register() {
   const [username, setUsername] = useState('')
@@ -12,7 +12,7 @@ export default function Register() {
     e.preventDefault()
     setError('')
     try {
-      await axios.post('http://127.0.0.1:8000/api/register/', { username, password })
+      await api.post('/register/', { username, password })
       navigate('/login')
     } catch (err) {
       setError('could not create that account, try a different username')
